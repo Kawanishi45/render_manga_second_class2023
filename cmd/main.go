@@ -32,6 +32,7 @@ func main() {
 	err = repository.Db.Ping()
 	if err != nil {
 		log.Println(err)
+		os.Exit(1)
 	}
 
 	fmt.Println("Successfully connected to db!")
