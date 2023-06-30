@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"database/sql"
-	_ "github.com/lib/pq"
+	"database/sql"        // データベースの操作に関するパッケージ
+	_ "github.com/lib/pq" // PostgreSQLドライバのパッケージ（ブランク識別子を使用してimportし、ドライバを初期化）
 )
 
-var Db *sql.DB
+var Db *sql.DB // データベース接続のためのグローバル変数
