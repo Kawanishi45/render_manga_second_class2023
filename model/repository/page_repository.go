@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"log"
+	"log" // ログ出力に関するパッケージ
 )
 
 type PageRepository interface {
@@ -12,7 +12,7 @@ type pageRepository struct {
 }
 
 func NewPageRepository() PageRepository {
-	return &pageRepository{}
+	return &pageRepository{} // 新しいページリポジトリを作成して返す
 }
 
 func (c pageRepository) GetPageImageUrlsByTitleId(titleId int) (pageImageUrls []string, err error) {
@@ -22,9 +22,10 @@ SELECT page_image_url
 FROM pages
 WHERE title_id = $1
 ORDER BY id
-`, titleId)
+`, titleId) // タイトルIDに基づいてページの画像URLを取得するクエリを実行
+
 	if err != nil {
-		log.Print(err)
+		log.Print(err) // エラーログを出力
 		return
 	}
 
@@ -32,7 +33,7 @@ ORDER BY id
 		var pageImageUrl string
 		err = rows.Scan(&pageImageUrl)
 		if err != nil {
-			log.Print(err)
+			log.Print(err) // エラーログを出力
 			return
 		}
 		pageImageUrls = append(pageImageUrls, pageImageUrl)
